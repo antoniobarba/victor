@@ -65,3 +65,61 @@ class Bishop(Piece):
                     break
             else:
                 break
+                
+    def attacks(self, node):
+        #Bottom-Left to Top-Right diagonal
+        for x in range(self.x - 1, 0, -1):
+            y = self.y + (x - self.x)
+            if y > 0:
+                piece = node.board[x + y * 8]
+                if piece == None:
+                    yield(x, y)
+                elif piece.is_white != self.is_white:
+                    yield (x, y)
+                    break
+                else:
+                    break
+            else:
+                break
+                
+        for x in range(self.x + 1, 8):
+            y = self.y + (x - self.x)
+            if y < 8:
+                piece = node.board[x + y * 8]
+                if piece == None:
+                    yield (x, y)
+                elif piece.is_white != self.is_white:
+                    yield (x, y)
+                    break
+                else:
+                    break
+            else:
+                break
+        #Top-Left to Bottom-Right diagonal
+        for x in range(self.x - 1, 0, -1):
+            y = self.y - (x - self.x)
+            if y > 0:
+                piece = node.board[x + y * 8]
+                if piece == None:
+                    yield (x, y)
+                elif piece.is_white != self.is_white:
+                    yield (x, y)
+                    break
+                else:
+                    break
+            else:
+                break
+                
+        for x in range(self.x + 1, 8):
+            y = self.y - (x - self.x)
+            if y < 8:
+                piece = node.board[x + y * 8]
+                if piece == None:
+                    yield (x, y)
+                elif piece.is_white != self.is_white:
+                    yield (x, y)
+                    break
+                else:
+                    break
+            else:
+                break

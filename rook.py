@@ -54,4 +54,49 @@ class Rook(Piece):
             else:
                 break
         
+    def attacks(self, node):
+        # to the left
+        for x in range(self.x - 1, 0, -1):
+            piece = node.board[x + self.y * 8]
+            if piece == None:
+                yield (x, self.y)
+            elif piece.is_white != self.is_white:
+                yield (x, self.y)
+                break
+            else:
+                break
+        
+        # to the right
+        for x in range(self.x + 1, 8):
+            piece = node.board[x + self.y * 8]
+            if piece == None:
+                yield (x, self.y)
+            elif piece.is_white != self.is_white:
+                yield (x, self.y)
+                break
+            else:
+                break
+                
+        # down
+        for y in range(self.y - 1, 0, -1):
+            piece = node.board[self.x + y * 8]
+            if piece == None:
+                yield (self.x, y)
+            elif piece.is_white != self.is_white:
+                yield (self.x, y)
+                break
+            else:
+                break
+        
+        # up
+        for y in range(self.y + 1, 8):
+            piece = node.board[self.x + y * 8]
+            if piece == None:
+                yield (self.x, y)
+            elif piece.is_white != self.is_white:
+                yield (self.x, y)
+                break
+            else:
+                break
+        
         

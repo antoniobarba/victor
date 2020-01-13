@@ -34,11 +34,12 @@ class ChessNode:
                         else:
                             self.blackKing = piece
                             
-                    for move in piece.moves(node):
+                    for sx,sy in piece.attacks(node):
                         if piece.is_white:
-                            self.whiteControls[piece.x + piece.y*8] = True
-                        else
-                            self.blackControls[piece.x + piece.y*8] = True
+                            self.whiteControls[sx + sy * 8] = True
+                        else 
+                            self.blackControls[sx + sy * 8] = True
+                            
         if self.whiteControls[self.blackKing.x + self.blackKing.y*8]:
             self.black_in_check = True
         if self.blackControls[self.whiteKing.x + self.whiteKing.y*8]:

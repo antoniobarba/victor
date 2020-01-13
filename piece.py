@@ -10,3 +10,6 @@ class Piece:
 
     def moves(self, node):
         raise Exception("Not Implemented Here")
+        
+    def attacks(self, node):
+        raise Exception("Not Implemented Here")

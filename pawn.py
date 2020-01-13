@@ -27,7 +27,7 @@ class Pawn(Piece):
                 
             # Go up 2 squares on the first move
             newx, newy = self.x, self.y + 2 * direction
-            if self.y == 1 and node.board[newx + newy * 8] == None:
+            if ((self.is_white and self.y == 1) or (not self.is_white and self.y == 6)) and node.board[newx + newy * 8] == None:
                 yield Move(Pawn(self, newx, newy, enpassant_rule_active=True, is_white=self.is_white), (self.x, self.y), (newx, newy))
                 
             # Take left
@@ -75,4 +75,22 @@ class Pawn(Piece):
                 yield Move(Queen(newx, newy, is_white=self.is_white), (self.x, self.y), (newx, newy))
                 yield Move(Rook(newx, newy, is_white=self.is_white), (self.x, self.y), (newx, newy))
                 yield Move(Bishop(newx, newy, is_white=self.is_white), (self.x, self.y), (newx, newy))
-                       
+                    
+    def attacks(self, node):
+        if self.is_white:
+            x,y = self.x - 1, self.y + 1
+            if x >= 0 and y < 8:
+                yield (x, y)
+                
+            x,y = self.x + 1, self.y + 1
+            if x < 8 and y < 8:
+                yield (x, y)
+        else:
+            x,y = self.x - 1, self.y - 1
+            if x >= 0 and y >= 0:
+                yield (x, y)
+            
+            x,y = self.x + 1, self.y - 1
+            if x < 8 and y >= 0:
+                yield (x, y)
+        

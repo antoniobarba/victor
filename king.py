@@ -111,6 +111,37 @@ class King(Piece):
             if not self.is_white and not node.whiteControls[x + y * 8]:
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
         
+    def attacks(self, node):
+        x,y = self.x - 1, self.y - 1
+        if x > 0 and y > 0:
+            yield (x,y)
             
+        x,y = self.x - 1, self.y
+        if x > 0 and y > 0:
+            yield (x,y)
+        
+        x,y = self.x - 1, self.y + 1
+        if x > 0 and y < 8:
+            yield (x,y)
+        
+        x,y = self.x, self.y - 1
+        if y > 0:
+            yield (x,y)
+        
+        x,y = self.x, self.y + 1
+        if y < 8:
+            yield (x,y)
+        
+        x,y = self.x + 1, self.y - 1
+        if x < 8 and y > 0:
+            yield (x,y)
+        
+        x,y = self.x + 1, self.y
+        if x < 8:
+            yield (x,y)
+        
+        x,y = self.x + 1, self.y + 1
+        if x < 8 and y < 8:
+            yield (x,y)
             
         
