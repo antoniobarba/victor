@@ -1,5 +1,7 @@
 class ChessNode:
     def __init__(self, parent = None):
+        self.list_of_moves = []
+        self.is_checkmate = False
         self.white_turn = True
         self.board = parent.board if parent else [None]*64
         self.blackControls = [False]*64
@@ -13,12 +15,25 @@ class ChessNode:
         
     def static_evaluation(self):
         # This is where the magic happens
-        return 0
+        if self.is_checkmate:
+            return 2000000 * (-1 if self.white_turn else 1)
+            
+        return self.count_material_imbalance()
+        
+    def count_material_imbalance(self):
+        total = 0
+        for x in range(0,64):
+            if (piece := self.board[x]) != None:
+                total += piece.base_value() * (1 if piece.is_white else -1)
+        
+        return total
 
     def is_terminal_node(self):
         # Checkmate, Stalemate and Draw conditions
         if len(self.children()) == 0:
-            return True # This is checkmate // there must be a faster way to calculate checkmate
+            self.is_checkmate = True
+            return True
+            
         return False
 
     def update_checks(self):

@@ -4,6 +4,7 @@ from move import Move
 class Queen(Piece):
     def __init__(self, x=0, y=0, is_white=True):
         super().__init__(x, y, is_white, is_king=False)
+        self.notation = "Q"
         
     def base_value(self):
         return 9;

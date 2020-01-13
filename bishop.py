@@ -4,6 +4,7 @@ from move import Move
 class Bishop(Piece):
     def __init__(self, x=0, y=0, is_white=True):
         super().__init__(x, y, is_white, is_king=False)
+        self.notation = "B"
         
     def base_value(self):
         return 3

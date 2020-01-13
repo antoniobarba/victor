@@ -9,6 +9,7 @@ class Pawn(Piece):
     def __init__(self, x=0, y=0, is_white=True, enpassant_rule_active=False):
         super().__init__(x, y, is_white, is_king=False)
         self.enpassant_rule_active = enpassant_rule_active
+        self.notation = "p"
 
     def base_value(self):
         return 1
