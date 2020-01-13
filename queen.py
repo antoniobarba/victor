@@ -87,7 +87,7 @@ class Queen(Piece):
         #Top-Left to Bottom-Right diagonal
         for x in range(self.x - 1, 0, -1):
             y = self.y - (x - self.x)
-            if y > 0:
+            if y < 8:
                 piece = node.board[x + y * 8]
                 if piece == None:
                     yield Move(self, (self.x, self.y), (x, y))
@@ -101,7 +101,7 @@ class Queen(Piece):
                 
         for x in range(self.x + 1, 8):
             y = self.y - (x - self.x)
-            if y < 8:
+            if y > 0:
                 piece = node.board[x + y * 8]
                 if piece == None:
                     yield Move(self, (self.x, self.y), (x, y))
@@ -191,7 +191,7 @@ class Queen(Piece):
         #Top-Left to Bottom-Right diagonal
         for x in range(self.x - 1, 0, -1):
             y = self.y - (x - self.x)
-            if y > 0:
+            if y < 8:
                 piece = node.board[x + y * 8]
                 if piece == None:
                     yield (x, y)
@@ -205,7 +205,7 @@ class Queen(Piece):
                 
         for x in range(self.x + 1, 8):
             y = self.y - (x - self.x)
-            if y < 8:
+            if y > 0:
                 piece = node.board[x + y * 8]
                 if piece == None:
                     yield (x, y)

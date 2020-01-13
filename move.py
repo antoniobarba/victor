@@ -41,6 +41,7 @@ class Move:
             
         node.board[endx + endy * 8] = self.piece
         node.list_of_moves.append(self)
+        node.white_turn = not node.white_turn
         node.update_checks()
 
     

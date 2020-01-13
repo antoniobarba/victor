@@ -13,6 +13,17 @@ class ChessNode:
         self.white_in_check = parent.white_in_check if parent else False
         self.black_in_check = parent.black_in_check if parent else False
         
+    def print_board(self):
+        b = self.board
+        print("+---+---+---+---+---+---+---+---+")
+        for i in range(0, 8):
+            x = (7-i) * 8
+            # print("|   |   |   |   |   |   |   |   |")
+            print(f"| {b[x].notation if b[x] else ' '} | {b[x+1].notation if b[x+1] else ' '} | {b[x+2].notation if b[x+2] else ' '} | {b[x+3].notation if b[x+3] else ' '} | {b[x+4].notation if b[x+4] else ' '} | {b[x+5].notation if b[x+5] else ' '} | {b[x+6].notation if b[x+6] else ' '} | {b[x+7].notation if b[x+7] else ' '} |")
+            # print("|   |   |   |   |   |   |   |   |")
+        print("+---+---+---+---+---+---+---+---+")
+        print(f"{'White' if self.white_turn else 'Black'} to move")
+    
     def static_evaluation(self):
         # This is where the magic happens
         if self.is_checkmate:
@@ -30,7 +41,7 @@ class ChessNode:
 
     def is_terminal_node(self):
         # Checkmate, Stalemate and Draw conditions
-        if len(self.children()) == 0:
+        if len(list(self.children())) == 0:
             self.is_checkmate = True
             return True
             
@@ -49,12 +60,13 @@ class ChessNode:
                         else:
                             self.blackKing = piece
                             
-                    for sx,sy in piece.attacks(node):
+                    for sx,sy in piece.attacks(self):
                         if piece.is_white:
                             self.whiteControls[sx + sy * 8] = True
-                        else 
+                        else:
                             self.blackControls[sx + sy * 8] = True
                             
+        self.print_board()
         if self.whiteControls[self.blackKing.x + self.blackKing.y*8]:
             self.black_in_check = True
         if self.blackControls[self.whiteKing.x + self.whiteKing.y*8]:
@@ -66,7 +78,7 @@ class ChessNode:
             for y in range(8):
                 piece = self.board[x+y*8]
                 if piece is not None and piece.is_white == self.white_turn:
-                    for move in piece.moves(node):
+                    for move in piece.moves(self):
                         child = ChessNode(self)
                         move.apply(child)
                         
