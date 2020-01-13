@@ -6,8 +6,8 @@ from queen import Queen
 from move import Move
 
 class Pawn(Piece):
-    def __init__(self, x=0, y=0, is_white=True, is_king=False, enpassant_rule_active=False):
-        super().__init__(x, y, is_white, is_king)
+    def __init__(self, x=0, y=0, is_white=True, enpassant_rule_active=False):
+        super().__init__(x, y, is_white, is_king=False)
         self.enpassant_rule_active = enpassant_rule_active
 
     def base_value(self):
