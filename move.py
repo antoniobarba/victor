@@ -9,7 +9,7 @@ class Move:
 
     def __str__(self):
         letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
-        return f"{self.piece.notation}{letters[self.start[0]]}{self.start[1]}-{letters[self.end[0]]}{self.end[1]}"
+        return f"{self.piece.notation}{letters[self.start[0]]}{self.start[1]+1}-{letters[self.end[0]]}{self.end[1]+1}"
 
     def apply(self, node):
         startx, starty = self.start

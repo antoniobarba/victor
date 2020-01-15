@@ -4,6 +4,7 @@ def alfa_beta(node, depth, a, b, white):
     elif white:
         # White playing, maximize the score
         v = -1000000000
+        list_of_moves = []
         for child in node.children(white):
             ab, list_of_moves = alfa_beta(child, depth - 1, a, b, False)
             v = max(v, ab)
@@ -14,6 +15,7 @@ def alfa_beta(node, depth, a, b, white):
     else:
         # Black playing, minimize the score
         v = 1000000000
+        list_of_moves = []
         for child in node.children(white):
             ab, list_of_moves = alfa_beta(child, depth - 1, a, b, True)
             v = min(v, ab)

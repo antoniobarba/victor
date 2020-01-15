@@ -6,6 +6,7 @@ from king import *
 from queen import *
 from rook import *
 from chessnode import *
+from move import *
 
 def setup_board():
     root = ChessNode()
@@ -39,6 +40,34 @@ def setup_board():
     
 r = setup_board()
 r.print_board()
-score, moves = alfabeta.alfa_beta(r, 4, -1000000000, 1000000000, True)
-print(f"score = {score}")
-print(f"moves = {[m.__str__() for m in moves]}")
+# score, moves = alfabeta.alfa_beta(r, 4, -1000000000, 1000000000, True)
+# print(f"score = {score}")
+#print(f"moves = {[m.__str__() for m in moves]}")
+print('Enter "h" for help')
+while (a := input('Move or "q" to quit: ')) != 'q':
+    if a == 'h':
+        print("'h' displays this screen")
+        print("'q' quits to the command line")
+        print("Moves are expressed in the form xNyM where x and y are the files whereas N and M are the ranks:")
+        print("Examples: to move the Pawn d2 to d4 enter d2d4")
+        print("To move the Knight b1 to c3 enter b1c3")
+    else:
+        # Convert command into a move object
+        startCol, startRow, endCol, endRow = a
+        columns = {'a':0, 'b':1, 'c':2, 'd':3, 'e':4, 'f':5, 'g':6, 'h':7}
+        startX = columns[startCol]
+        startY = int(startRow) - 1
+        endX = columns[endCol]
+        endY = int(endRow) - 1
+
+        piece = r.board[startX + startY * 8]
+        move = Move(piece, (startX, startY), (endX, endY))
+        move.apply(r)
+        r.list_of_moves.clear()
+        r.print_board()
+
+        score, moves = alfabeta.alfa_beta(r, 4, -1000000000, 1000000000, False)
+        moves[0].apply(r)
+        r.print_board()
+        print(f"Score: {score}, variation: {[m.__str__() for m in moves]}")
+

@@ -44,7 +44,7 @@ class Pawn(Piece):
             # Take right
             newx, newy = self.x + 1, self.y + 1 * direction
             if self.x < 7 and (piece := node.board[newx + self.y * 8]) != None and piece.is_white != self.is_white:
-                yield Move(Pawn(newx, newy, is_white), (self.x, self.y), (newx, newy))
+                yield Move(Pawn(newx, newy, self.is_white), (self.x, self.y), (newx, newy))
             # Take right enpassant
             if self.x < 7 and (piece := node.board[newx + self.y * 8]) != None and piece.is_white != self.is_white:
                 if isinstance(piece, Pawn):
