@@ -19,9 +19,10 @@ class ChessNode:
         for i in range(0, 8):
             x = (7-i) * 8
             # print("|   |   |   |   |   |   |   |   |")
-            print(f"| {b[x].notation if b[x] else ' '} | {b[x+1].notation if b[x+1] else ' '} | {b[x+2].notation if b[x+2] else ' '} | {b[x+3].notation if b[x+3] else ' '} | {b[x+4].notation if b[x+4] else ' '} | {b[x+5].notation if b[x+5] else ' '} | {b[x+6].notation if b[x+6] else ' '} | {b[x+7].notation if b[x+7] else ' '} |")
-            # print("|   |   |   |   |   |   |   |   |")
-        print("+---+---+---+---+---+---+---+---+")
+            print(f"| {b[x].notation if b[x] else ' '} | {b[x+1].notation if b[x+1] else ' '} | {b[x+2].notation if b[x+2] else ' '} | {b[x+3].notation if b[x+3] else ' '} | {b[x+4].notation if b[x+4] else ' '} | {b[x+5].notation if b[x+5] else ' '} | {b[x+6].notation if b[x+6] else ' '} | {b[x+7].notation if b[x+7] else ' '} | {8-i}")
+            print("+---+---+---+---+---+---+---+---+")
+        print("  A   B   C   D   E   F   G   H  ")
+        
         print(f"{'White' if self.white_turn else 'Black'} to move")
     
     def static_evaluation(self, white):
