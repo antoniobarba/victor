@@ -24,8 +24,9 @@ class ChessNode:
         print("+---+---+---+---+---+---+---+---+")
         print(f"{'White' if self.white_turn else 'Black'} to move")
     
-    def static_evaluation(self):
+    def static_evaluation(self, white):
         # This is where the magic happens
+        self.white_turn = white
         if self.is_checkmate:
             return 2000000 * (-1 if self.white_turn else 1)
             
@@ -66,13 +67,17 @@ class ChessNode:
                         else:
                             self.blackControls[sx + sy * 8] = True
                             
-        if self.whiteControls[self.blackKing.x + self.blackKing.y*8]:
-            self.black_in_check = True
-        if self.blackControls[self.whiteKing.x + self.whiteKing.y*8]:
-            self.white_in_check = True
+        try:
+            if self.whiteControls[self.blackKing.x + self.blackKing.y*8]:
+                self.black_in_check = True
+            if self.blackControls[self.whiteKing.x + self.whiteKing.y*8]:
+                self.white_in_check = True
+        except:
+            self.print_board()
 
-    def children(self):
+    def children(self, white):
         # Generates new board configurations
+        self.white_turn = white
         for y in range(8):
             for x in range(8):
                 piece = self.board[x+y*8]

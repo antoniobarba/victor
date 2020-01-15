@@ -16,9 +16,9 @@ class Bishop(Piece):
             if y >= 0:
                 piece = node.board[x + y * 8]
                 if piece == None:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Bishop(x, y, self.is_white), (self.x, self.y), (x, y))
                 elif piece.is_white != self.is_white:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Bishop(x, y, self.is_white), (self.x, self.y), (x, y))
                     break
                 else:
                     break
@@ -30,9 +30,9 @@ class Bishop(Piece):
             if y < 8:
                 piece = node.board[x + y * 8]
                 if piece == None:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Bishop(x, y, self.is_white), (self.x, self.y), (x, y))
                 elif piece.is_white != self.is_white:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Bishop(x, y, self.is_white), (self.x, self.y), (x, y))
                     break
                 else:
                     break
@@ -44,9 +44,9 @@ class Bishop(Piece):
             if y < 8:
                 piece = node.board[x + y * 8]
                 if piece == None:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Bishop(x, y, self.is_white), (self.x, self.y), (x, y))
                 elif piece.is_white != self.is_white:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Bishop(x, y, self.is_white), (self.x, self.y), (x, y))
                     break
                 else:
                     break
@@ -58,9 +58,9 @@ class Bishop(Piece):
             if y >= 0:
                 piece = node.board[x + y * 8]
                 if piece == None:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Bishop(x, y, self.is_white), (self.x, self.y), (x, y))
                 elif piece.is_white != self.is_white:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Bishop(x, y, self.is_white), (self.x, self.y), (x, y))
                     break
                 else:
                     break

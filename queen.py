@@ -15,9 +15,9 @@ class Queen(Piece):
         for x in range(self.x - 1, 0, -1):
             piece = node.board[x + self.y * 8]
             if piece == None:
-                yield Move(self, (self.x, self.y), (x, self.y))
+                yield Move(Queen(x, self.y, self.is_white), (self.x, self.y), (x, self.y))
             elif piece.is_white != self.is_white:
-                yield Move(self, (self.x, self.y), (x, self.y))
+                yield Move(Queen(x, self.y, self.is_white), (self.x, self.y), (x, self.y))
                 break
             else:
                 break
@@ -26,9 +26,9 @@ class Queen(Piece):
         for x in range(self.x + 1, 8):
             piece = node.board[x + self.y * 8]
             if piece == None:
-                yield Move(self, (self.x, self.y), (x, self.y))
+                yield Move(Queen(x, self.y, self.is_white), (self.x, self.y), (x, self.y))
             elif piece.is_white != self.is_white:
-                yield Move(self, (self.x, self.y), (x, self.y))
+                yield Move(Queen(x, self.y, self.is_white), (self.x, self.y), (x, self.y))
                 break
             else:
                 break
@@ -37,9 +37,9 @@ class Queen(Piece):
         for y in range(self.y - 1, 0, -1):
             piece = node.board[self.x + y * 8]
             if piece == None:
-                yield Move(self, (self.x, self.y), (self.x, y))
+                yield Move(Queen(self.x, y, self.is_white), (self.x, self.y), (self.x, y))
             elif piece.is_white != self.is_white:
-                yield Move(self, (self.x, self.y), (self.x, y))
+                yield Move(Queen(self.x, y, self.is_white), (self.x, self.y), (self.x, y))
                 break
             else:
                 break
@@ -48,9 +48,9 @@ class Queen(Piece):
         for y in range(self.y + 1, 8):
             piece = node.board[self.x + y * 8]
             if piece == None:
-                yield Move(self, (self.x, self.y), (self.x, y))
+                yield Move(Queen(self.x, y, self.is_white), (self.x, self.y), (self.x, y))
             elif piece.is_white != self.is_white:
-                yield Move(self, (self.x, self.y), (self.x, y))
+                yield Move(Queen(self.x, y, self.is_white), (self.x, self.y), (self.x, y))
                 break
             else:
                 break
@@ -62,9 +62,9 @@ class Queen(Piece):
             if y >= 0:
                 piece = node.board[x + y * 8]
                 if piece == None:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Queen(x, y, self.is_white), (self.x, self.y), (x, y))
                 elif piece.is_white != self.is_white:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Queen(x, y, self.is_white), (self.x, self.y), (x, y))
                     break
                 else:
                     break
@@ -76,9 +76,9 @@ class Queen(Piece):
             if y < 8:
                 piece = node.board[x + y * 8]
                 if piece == None:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Queen(x, y, self.is_white), (self.x, self.y), (x, y))
                 elif piece.is_white != self.is_white:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Queen(x, y, self.is_white), (self.x, self.y), (x, y))
                     break
                 else:
                     break
@@ -90,9 +90,9 @@ class Queen(Piece):
             if y < 8:
                 piece = node.board[x + y * 8]
                 if piece == None:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Queen(x, y, self.is_white), (self.x, self.y), (x, y))
                 elif piece.is_white != self.is_white:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Queen(x, y, self.is_white), (self.x, self.y), (x, y))
                     break
                 else:
                     break
@@ -104,9 +104,9 @@ class Queen(Piece):
             if y >= 0:
                 piece = node.board[x + y * 8]
                 if piece == None:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Queen(x, y, self.is_white), (self.x, self.y), (x, y))
                 elif piece.is_white != self.is_white:
-                    yield Move(self, (self.x, self.y), (x, y))
+                    yield Move(Queen(x, y, self.is_white), (self.x, self.y), (x, y))
                     break
                 else:
                     break
