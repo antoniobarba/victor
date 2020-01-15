@@ -4,7 +4,7 @@ from move import Move
 class Bishop(Piece):
     def __init__(self, x=0, y=0, is_white=True):
         super().__init__(x, y, is_white, is_king=False)
-        self.notation = "B"
+        self.notation = "B" if is_white else "b"
         
     def base_value(self):
         return 3
@@ -13,7 +13,7 @@ class Bishop(Piece):
         #Bottom-Left to Top-Right diagonal
         for x in range(self.x - 1, 0, -1):
             y = self.y + (x - self.x)
-            if y > 0:
+            if y >= 0:
                 piece = node.board[x + y * 8]
                 if piece == None:
                     yield Move(self, (self.x, self.y), (x, y))
@@ -55,7 +55,7 @@ class Bishop(Piece):
                 
         for x in range(self.x + 1, 8):
             y = self.y - (x - self.x)
-            if y > 0:
+            if y >= 0:
                 piece = node.board[x + y * 8]
                 if piece == None:
                     yield Move(self, (self.x, self.y), (x, y))
@@ -71,7 +71,7 @@ class Bishop(Piece):
         #Bottom-Left to Top-Right diagonal
         for x in range(self.x - 1, 0, -1):
             y = self.y + (x - self.x)
-            if y > 0:
+            if y >= 0:
                 piece = node.board[x + y * 8]
                 if piece == None:
                     yield(x, y)
@@ -113,7 +113,7 @@ class Bishop(Piece):
                 
         for x in range(self.x + 1, 8):
             y = self.y - (x - self.x)
-            if y > 0:
+            if y >= 0:
                 piece = node.board[x + y * 8]
                 if piece == None:
                     yield (x, y)

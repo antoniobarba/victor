@@ -34,8 +34,11 @@ def setup_board():
     for x in range(0, 8):
         root.board[x + 48] = Pawn(x, 6, False)
         
+    root.update_checks()
     return root
     
 r = setup_board()
 r.print_board()
-score, moves = alfabeta.alfa_beta(r, 3, 0, 0, True)
+score, moves = alfabeta.alfa_beta(r, 4, -1000000000, 1000000000, True)
+print(f"score = {score}")
+print(f"moves = {[m.__str__() for m in moves]}")

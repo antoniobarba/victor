@@ -9,7 +9,7 @@ class Pawn(Piece):
     def __init__(self, x=0, y=0, is_white=True, enpassant_rule_active=False):
         super().__init__(x, y, is_white, is_king=False)
         self.enpassant_rule_active = enpassant_rule_active
-        self.notation = "p"
+        self.notation = "P" if is_white else "p"
 
     def base_value(self):
         return 1
@@ -29,7 +29,7 @@ class Pawn(Piece):
             # Go up 2 squares on the first move
             newx, newy = self.x, self.y + 2 * direction
             if ((self.is_white and self.y == 1) or (not self.is_white and self.y == 6)) and node.board[newx + newy * 8] == None:
-                yield Move(Pawn(newx, newy, self.is_white, enpassant_rule_active=True, ), (self.x, self.y), (newx, newy))
+                yield Move(Pawn(newx, newy, self.is_white, enpassant_rule_active=True), (self.x, self.y), (newx, newy))
                 
             # Take left
             newx, newy = self.x - 1, self.y + 1 * direction

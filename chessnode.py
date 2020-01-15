@@ -1,9 +1,9 @@
 class ChessNode:
     def __init__(self, parent = None):
-        self.list_of_moves = []
+        self.list_of_moves = parent.list_of_moves.copy() if parent else []
         self.is_checkmate = False
         self.white_turn = True
-        self.board = parent.board if parent else [None]*64
+        self.board = parent.board.copy() if parent else [None]*64
         self.blackControls = [False]*64
         self.whiteControls = [False]*64
         self.white_can_short_castle = parent.white_can_short_castle if parent else True
@@ -41,9 +41,9 @@ class ChessNode:
 
     def is_terminal_node(self):
         # Checkmate, Stalemate and Draw conditions
-        if len(list(self.children())) == 0:
-            self.is_checkmate = True
-            return True
+        #if len(list(self.children())) == 0:
+        #    self.is_checkmate = True
+        #    return True
             
         return False
 
@@ -66,7 +66,6 @@ class ChessNode:
                         else:
                             self.blackControls[sx + sy * 8] = True
                             
-        self.print_board()
         if self.whiteControls[self.blackKing.x + self.blackKing.y*8]:
             self.black_in_check = True
         if self.blackControls[self.whiteKing.x + self.whiteKing.y*8]:
@@ -74,8 +73,8 @@ class ChessNode:
 
     def children(self):
         # Generates new board configurations
-        for x in range(8):
-            for y in range(8):
+        for y in range(8):
+            for x in range(8):
                 piece = self.board[x+y*8]
                 if piece is not None and piece.is_white == self.white_turn:
                     for move in piece.moves(self):

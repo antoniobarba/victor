@@ -6,7 +6,7 @@ class King(Piece):
     def __init__(self, x=0, y=0, is_white=True, not_moved_yet=True):
         super().__init__(x, y, is_white, is_king=True)
         self.not_moved_yet = not_moved_yet
-        self.notation = "K"
+        self.notation = "K" if is_white else "k"
 		
     def base_value(self):
         return 1000000
@@ -57,76 +57,76 @@ class King(Piece):
                 
         
         x,y = self.x - 1, self.y - 1
-        if x > 0 and y > 0:
-            if self.is_white and not node.blackControls[x + y * 8]:
+        if x >= 0 and y >= 0:
+            if self.is_white and not node.blackControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or not piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
-            if not self.is_white and not node.whiteControls[x + y * 8]:
+            if not self.is_white and not node.whiteControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
         
         x,y = self.x - 1, self.y
-        if x > 0 and y > 0:
-            if self.is_white and not node.blackControls[x + y * 8]:
+        if x >= 0 and y >= 0:
+            if self.is_white and not node.blackControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or not piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
-            if not self.is_white and not node.whiteControls[x + y * 8]:
+            if not self.is_white and not node.whiteControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
         
         x,y = self.x - 1, self.y + 1
-        if x > 0 and y < 8:
-            if self.is_white and not node.blackControls[x + y * 8]:
+        if x >= 0 and y < 8:
+            if self.is_white and not node.blackControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or not piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
-            if not self.is_white and not node.whiteControls[x + y * 8]:
+            if not self.is_white and not node.whiteControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
         
         x,y = self.x, self.y - 1
-        if y > 0:
-            if self.is_white and not node.blackControls[x + y * 8]:
+        if y >= 0:
+            if self.is_white and not node.blackControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or not piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
-            if not self.is_white and not node.whiteControls[x + y * 8]:
+            if not self.is_white and not node.whiteControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
         
         x,y = self.x, self.y + 1
         if y < 8:
-            if self.is_white and not node.blackControls[x + y * 8]:
+            if self.is_white and not node.blackControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or not piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
-            if not self.is_white and not node.whiteControls[x + y * 8]:
+            if not self.is_white and not node.whiteControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
         
         x,y = self.x + 1, self.y - 1
-        if x < 8 and y > 0:
-            if self.is_white and not node.blackControls[x + y * 8]:
+        if x < 8 and y >= 0:
+            if self.is_white and not node.blackControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or not piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
-            if not self.is_white and not node.whiteControls[x + y * 8]:
+            if not self.is_white and not node.whiteControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
         
         x,y = self.x + 1, self.y
         if x < 8:
-            if self.is_white and not node.blackControls[x + y * 8]:
+            if self.is_white and not node.blackControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or not piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
-            if not self.is_white and not node.whiteControls[x + y * 8]:
+            if not self.is_white and not node.whiteControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
         
         x,y = self.x + 1, self.y + 1
         if x < 8 and y < 8:
-            if self.is_white and not node.blackControls[x + y * 8]:
+            if self.is_white and not node.blackControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or not piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
-            if not self.is_white and not node.whiteControls[x + y * 8]:
+            if not self.is_white and not node.whiteControls[x + y * 8] and ((piece := node.board[x + y*8]) == None or piece.is_white):
                 yield Move(King(x, y, is_white = self.is_white), (self.x, self.y), (x,y))
         
     def attacks(self, node):
         x,y = self.x - 1, self.y - 1
-        if x > 0 and y > 0:
+        if x >= 0 and y >= 0:
             yield (x,y)
             
         x,y = self.x - 1, self.y
-        if x > 0 and y > 0:
+        if x >= 0 and y >= 0:
             yield (x,y)
         
         x,y = self.x - 1, self.y + 1
-        if x > 0 and y < 8:
+        if x >= 0 and y < 8:
             yield (x,y)
         
         x,y = self.x, self.y - 1
-        if y > 0:
+        if y >= 0:
             yield (x,y)
         
         x,y = self.x, self.y + 1
@@ -134,7 +134,7 @@ class King(Piece):
             yield (x,y)
         
         x,y = self.x + 1, self.y - 1
-        if x < 8 and y > 0:
+        if x < 8 and y >= 0:
             yield (x,y)
         
         x,y = self.x + 1, self.y

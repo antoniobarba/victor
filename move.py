@@ -32,7 +32,7 @@ class Move:
             node.board[3 + endy * 8] = rook
             
         if self.short_castle or self.long_castle:
-            if piece.is_white:
+            if self.piece.is_white:
                 node.white_can_short_castle = False
                 node.white_can_long_castle = False
             else:
@@ -40,6 +40,8 @@ class Move:
                 node.black_can_long_castle = False
             
         node.board[endx + endy * 8] = self.piece
+        self.piece.x = endx
+        self.piece.y = endy
         node.list_of_moves.append(self)
         node.white_turn = not node.white_turn
         node.update_checks()
